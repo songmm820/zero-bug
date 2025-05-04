@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background: url('@/assets/images/multi_color_glows.png') no-repeat top / 900px;
+}
+
+/* 设置滚动条的高度（水平滚动条） */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+:hover::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* 修改滚动条轨道 */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* 修改滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c1c1c1;
+}
+
+/* 兼容火狐浏览器 */
+@supports not (selector(::-webkit-scrollbar)) {
+  html {
+    scrollbar-width: auto;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+  }
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}

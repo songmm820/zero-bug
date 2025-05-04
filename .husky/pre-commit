@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# 运行代码检查
+lint_output=$(pnpm lint 2>&1)
+
+# 这个脚本会运行npm run lint命令进行代码检查并将检查的输出存储在lint_output变量中
+# 然后，它会检查lint_output中是否包含错误信息
+# 如果检查输出中包含任何错误（通过搜索关键字"error"进行检查）
+# 脚本会输出错误消息和检查的详细信息，并退出状态为1，阻止提交
+
+# 检查代码检查的输出是否包含错误信息
+if echo "$lint_output" | grep -iq "error"; then
+  echo "代码检查失败，请修复错误后再提交。"
+  echo "$lint_output"
+  exit 1
+fi
+# 运行代码格式化

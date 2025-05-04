@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+/* 艺术字体 */
+@font-face {
+  font-family: 'TsangerYuYangT_W04';
+  src: url('@/assets/fonts/TsangerYuYangT_W04_W04.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 主题模式 */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --color-primary: #165dff;
+  --color-success: rgb(16 185 129 / 1);
+  --color-danger: oklch(0.577 0.245 27.325);
+}
+
+/* 聚合类 */
+@layer components {
+  /* TsangerYuYangT 字体 */
+  .tsanger-yu-yang-t {
+    font-family: 'TsangerYuYangT_W04', sans-serif;
+  }
+
+  /* 通用阴影1 */
+  .common-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  /* 通用阴影2 */
+  .common-shadow-2 {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  /* 鼠标悬浮阴影2 */
+  .common-shadow-2:hover {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  /* 单行文本省略 */
+  .text-ellipsis-1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
