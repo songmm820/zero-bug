@@ -12,7 +12,11 @@
 czg是git-cz的升级版，不必依赖 commitlint 它提供了更多的功能和更好的用户体验。例如，czg支持自定义提交类型、自定义提交范围、自定义提交主题等。这使得我们可以更灵活地控制提交信息，从而提高代码质量和可维护性。
 
 
-## Hotjar监控地址
-https://insights.hotjar.com/sites/6391601/overview
-邮箱：mmsong@yeah.net
+## Hotjar监控
+hotjar是一个网站分析工具，可以帮助我们了解用户在网站上的行为。它可以帮助我们了解用户是如何找到我们的网站、他们是如何导航我们的网站、他们是如何与我们的网站交互的。这些信息可以帮助我们改进我们的网站，提高用户体验，从而提高我们的网站流量和转化率。
+<br>
+https://insights.hotjar.com/site/lis
+<br>
 密码：Smm129946902.
+<br>
+邮箱：mmsong@yeah.net
