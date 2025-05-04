@@ -20,14 +20,14 @@ const czgConfig = defineConfig({
     confirmCommit: '是否提交或修改commit ?'
   },
   types: [
-    { value: 'feat', name: 'feat:      ✨     新增功能', emoji: ':sparkles:' },
+    { value: 'feat', name: 'feat:      ✨    新增功能', emoji: ':sparkles:' },
     { value: 'fix', name: 'fix:       🐛    修复缺陷', emoji: ':bug:' },
     { value: 'docs', name: 'docs:      📝    文档更新', emoji: ':memo:' },
     { value: 'style', name: 'style:     💄    代码格式', emoji: ':lipstick:' },
     { value: 'refactor', name: 'refactor:  ♻️    代码重构 ', emoji: ':recycle:' },
     { value: 'perf', name: 'perf:      ⚡️    性能提升', emoji: ':zap:' },
-    { value: 'test', name: 'test:      ✅     测试相关', emoji: ':white_check_mark:' },
-    { value: 'build', name: 'build:     📦️   构建相关', emoji: ':package:' },
+    { value: 'test', name: 'test:       ✅   测试相关', emoji: ':white_check_mark:' },
+    { value: 'build', name: 'build:     📦️    构建相关', emoji: ':package:' },
     { value: 'ci', name: 'ci:        🎡    持续集成', emoji: ':ferris_wheel:' },
     { value: 'chore', name: 'chore:     🔨    其他修改', emoji: ':hammer:' },
     { value: 'revert', name: 'revert:    ⏪️    回退代码', emoji: ':rewind:' }
