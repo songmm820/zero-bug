@@ -61,7 +61,7 @@ function DashboardFooter() {
   const FooterCols = () => {
     return (
       <>
-        <div className="text-[12px] h-full p-[32px] grid grid-cols-3 gap-[24px]">
+        <div className="text-[12px] h-full flex justify-around gap-[24px]">
           {footerHrefs.map((col, index) => {
             return <FooterCol item={col} key={index} />
           })}
@@ -71,11 +71,11 @@ function DashboardFooter() {
   }
 
   return (
-    <div className="h-[240px] flex bg-[#101827]">
-      <div className="flex-1">
+    <div className="h-[240px] p-[32px] flex bg-[#101827] flex-row max-phone:flex-col-reverse">
+      <div className="flex-1 max-phone:mt-[24px]">
         <FooterLeft />
       </div>
-      <div className="w-[50%]">
+      <div className="w-[50%] max-phone:w-full">
         <FooterCols />
       </div>
     </div>

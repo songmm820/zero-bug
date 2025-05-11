@@ -22,6 +22,7 @@ function DashboardMain() {
   const Banner = () => {
     return (
       <div className="relative h-[320px]" style={{ backgroundImage: 'linear-gradient(0deg, #d5eaff, #fff)' }}>
+        <div className="absolute top-[30%] left-[16rem] "></div>
         <div className="absolute top-[1rem] right-[16rem] ">
           <BannerImage url={img_1} width={275} rotate={20} />
         </div>

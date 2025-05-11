@@ -16,6 +16,10 @@
   --color-primary: #165dff;
   --color-success: rgb(16 185 129 / 1);
   --color-danger: oklch(0.577 0.245 27.325);
+
+  --breakpoint-phone: 576px;
+  --breakpoint-pad: 768px;
+  --breakpoint-pc: 992px;
 }
 
 /* 聚合类 */
@@ -46,4 +50,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
+
 }
