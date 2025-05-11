@@ -81,7 +81,7 @@ export class ScreenRecorderClass implements ScreenRecorderPlugin {
  * 实例化屏幕录制插件
  */
 export function createScreenRecorderPlugin(): ScreenRecorderPlugin {
-  return new ScreenRecorderClass('PLUGIN_003', '屏幕录制', '屏幕录制插件', 'compression', '1.0.0')
+  return new ScreenRecorderClass('PLUGIN_003', '屏幕录制', '屏幕录制插件', 'videocamera', '1.0.0')
 }
 
 export const ScreenRecorderInstance = createScreenRecorderPlugin()

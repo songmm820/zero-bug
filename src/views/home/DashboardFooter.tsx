@@ -1,7 +1,10 @@
 /**
- * Views：home footer
+ * Views：Home Footer
  * @author songmm
  */
+
+import Logo from '@/components/Logo/Logo.tsx'
+
 type IFooterItem = {
   label: string
   hrefs?: { label: string }[]
@@ -24,23 +27,41 @@ function DashboardFooter() {
     }
   ]
 
+  // 底部左侧
+  const FooterLeft = () => {
+    return (
+      <div className="text-[#fff] h-full flex flex-col justify-center items-center">
+        <div className="flex justify-between items-center gap-[24px]">
+          <Logo size={42} />
+          <div className="text-[14px]">© 2025 {import.meta.env.VITE_APP_TITLE} . 保留所有使用权利</div>
+        </div>
+      </div>
+    )
+  }
+
+  // 底部列 item
   const FooterCol = ({ item }: { item: IFooterItem }) => {
     return (
-      <div className="flex flex-col">
+      <div className="flex flex-col text-[#fff]">
         <div className="text-[14px] font-bold">{item.label}</div>
-        <div className="mt-[12px] flex flex-col gap-[8px]">
+        <div className="mt-[12px] flex flex-col gap-[8px] ">
           {item.hrefs?.map((href, index) => {
-            return <div key={index}>{href.label}</div>
+            return (
+              <div className="cursor-pointer" key={index}>
+                {href.label}
+              </div>
+            )
           })}
         </div>
       </div>
     )
   }
 
+  // 底部列
   const FooterCols = () => {
     return (
       <>
-        <div className="h-full p-[32px] grid grid-cols-3 gap-[24px]">
+        <div className="text-[12px] h-full p-[32px] grid grid-cols-3 gap-[24px]">
           {footerHrefs.map((col, index) => {
             return <FooterCol item={col} key={index} />
           })}
@@ -50,8 +71,13 @@ function DashboardFooter() {
   }
 
   return (
-    <div className="h-[240px] bg-[rgba(229,230,235,0.5)]">
-      <FooterCols />
+    <div className="h-[240px] flex bg-[#101827]">
+      <div className="flex-1">
+        <FooterLeft />
+      </div>
+      <div className="w-[50%]">
+        <FooterCols />
+      </div>
     </div>
   )
 }
