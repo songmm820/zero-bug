@@ -11,6 +11,7 @@ import { updateScreenSizeAtom } from '@/jotai-atoms/app-store'
 import _ from 'lodash'
 
 function App() {
+  // 更新屏幕尺寸
   const [, updateScreenSize] = useAtom(updateScreenSizeAtom)
 
   /**

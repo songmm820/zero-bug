@@ -1,5 +1,5 @@
 /**
- * Router List Config
+ * Router List Config 路由表
  * @author songmm
  */
 
@@ -20,7 +20,7 @@ const router = createHashRouter([
   // dashboard
   {
     path: '/dashboard',
-    element: <LazyImportComponent lazyChildren={HomeView} isRequiredAuth={false} />,
+    element: <LazyImportComponent lazyChildren={HomeView} isRequiredAuth={false} isTrackPageView={false} />,
     loader: () => {
       return Promise.resolve(true)
     }
@@ -28,12 +28,12 @@ const router = createHashRouter([
   // sign
   {
     path: '/sign',
-    element: <LazyImportComponent lazyChildren={SignView} isRequiredAuth={false} title="登录" />
+    element: <LazyImportComponent lazyChildren={SignView} isRequiredAuth={false} title="登录" isTrackPageView />
   },
   // 404 Not Found
   {
     path: '*',
-    element: <LazyImportComponent lazyChildren={NotFoundView} isRequiredAuth={false} title="404" />
+    element: <LazyImportComponent lazyChildren={NotFoundView} isRequiredAuth={false} title="404" isTrackPageView={false} />
   }
 ])
 

@@ -7,8 +7,9 @@ import { ScreenRecorderClass } from '@/configs/media-handle/screen-recorder/scre
 import useTimer from '@/hooks/use-timer.ts'
 import { useEffect, useState } from 'react'
 import { Button } from '@arco-design/web-react'
-import { DownloadFileUrl } from '@/utils/file-util.tsx'
+import { DownloadFileUrl } from '@/utils/file-util.ts'
 import { ScreenRecorderVideoMap } from '@/types/plugin/media-handle/screen-recorder.type.ts'
+import { trackEvent } from '@/utils/tracking.ts'
 
 export type IImageCompressionPluginProps = {
   /* 插件信息 */
@@ -25,6 +26,8 @@ function ScreenRecorderUsePlugin(props: IImageCompressionPluginProps) {
 
   // 点击开始录制按钮
   const handleClickStartBtn = () => {
+    // 事件埋点
+    trackEvent('CLICK', '使用屏幕录制插件')
     start()
   }
 

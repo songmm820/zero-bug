@@ -6,7 +6,7 @@
 import { useRef, useState } from 'react'
 import IconPark from '@/components/IconPark/IconPark.tsx'
 import { Button, Select, Tooltip } from '@arco-design/web-react'
-import { DownloadFile, SelectFile } from '@/utils/file-util.tsx'
+import { DownloadFile, SelectFile } from '@/utils/file-util.ts'
 import {
   CompressionExtList,
   CompressionExtMap,
@@ -18,6 +18,7 @@ import {
 } from '@/types/plugin/media-handle/image-compression.type.ts'
 import toast from 'react-hot-toast'
 import ImageCompressionList from './ImageCompressionList.tsx'
+import { trackEvent } from '@/utils/tracking.ts'
 
 export type CompressResultWithId = CompressResultType & { id: number }
 
@@ -72,6 +73,9 @@ function ImageCompressionUsePlugin(props: IImageCompressionPluginProps) {
     // 土司提示
     await toast.promise(
       async () => {
+        // 事件埋点
+        trackEvent('CLICK', '使用图片压缩插件')
+        // 压缩图片
         await handleCompressImage(files)
       },
       {

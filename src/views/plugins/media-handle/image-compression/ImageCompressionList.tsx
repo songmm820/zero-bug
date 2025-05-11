@@ -4,7 +4,7 @@
  */
 import { AnimatePresence, motion } from 'motion/react'
 import IconPark from '@/components/IconPark/IconPark.tsx'
-import { GetCompressRatio, GetFilePreviewSrc, GetReadableFileSize, ToPercentage } from '@/utils/file-util.tsx'
+import { GetCompressRatio, GetFilePreviewSrc, GetReadableFileSize, ToPercentage } from '@/utils/file-util.ts'
 import { CompressResultWithId } from './ImageCompressionUsePlugin.tsx'
 
 type ICompressionListProps = {

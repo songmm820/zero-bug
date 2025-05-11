@@ -4,7 +4,7 @@
  * 2.哈希对比：通过解析HTML中script标签指纹判断更新
  * 3.强制刷新：检测到更新后提示用户刷新页面
  */
-import { mountAnyWhere } from '@/utils/dom.tsx'
+import { mountAnyWhere } from '@/utils/dom.ts'
 import SystemUpdateModal from '@/views/system/SystemUpdateModal.tsx'
 
 // 请求首页
