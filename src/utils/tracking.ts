@@ -67,6 +67,7 @@ const sendTrackingData = (event: TrackEvent) => {
   }
 
   // @TODO 发送埋点数据
+  // eslint-disable-next-line no-console
   console.log('埋点数据:', data)
 }
 
