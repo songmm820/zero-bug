@@ -6,7 +6,9 @@
 function DashboardMain() {
   return (
     <>
-      <div className="relative">Main</div>
+      <div className="relative">
+        <div id="game-container"></div>
+      </div>
     </>
   )
 }
