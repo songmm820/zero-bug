@@ -11,6 +11,7 @@ interface ImportMetaEnv {
   readonly VITE_BAIDU_FANYI_APP_ID: string
   readonly VITE_BAIDU_FANYI_KEY: string
   readonly VITE_AXIOS_BASE_URL: string
+  readonly VITE_APP_KEY: string
   // 更多环境变量...
 }
 
