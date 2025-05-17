@@ -2,25 +2,26 @@
  * Storage 工具类
  * @author songmm
  */
+class StorageClass {
+  private prefix: string
+  private storage: Storage
 
-type StorageUtil = {
-  get: (key: string) => string | null
-  set: (key: string, value: string) => void
-  remove: (key: string) => void
-  clear: () => void
-}
-
-/**
- * 创建 Storage 工具类
- * @param storage Storage 实例
- */
-function createStorageUtil(storage: Storage): StorageUtil {
   /**
-   *  Get item
+   * 构造函数
+   * @param storage Storage 实例
+   * @param prefix 存储的键名前缀
+   */
+  constructor(storage: Storage, prefix: string) {
+    this.storage = storage
+    this.prefix = prefix
+  }
+
+  /**
+   * Get item
    * @param key key
    */
-  function get(key: string): string | null {
-    return storage.getItem(key)
+  get(key: string): string | null {
+    return this.storage.getItem(this.getPrefixedKey(key))
   }
 
   /**
@@ -28,27 +29,35 @@ function createStorageUtil(storage: Storage): StorageUtil {
    * @param key key
    * @param value value
    */
-  function set(key: string, value: string): void {
-    storage.setItem(key, value)
+  set(key: string, value: string): void {
+    this.storage.setItem(this.getPrefixedKey(key), value)
   }
 
   /**
    * Remove item
    * @param key key
    */
-  function remove(key: string): void {
-    storage.removeItem(key)
+  remove(key: string): void {
+    this.storage.removeItem(this.getPrefixedKey(key))
   }
 
   /**
    * Clear storage
    */
-  function clear(): void {
-    storage.clear()
+  clear(): void {
+    this.storage.clear()
   }
 
-  return { get, set, remove, clear }
+  /**
+   * 获取带前缀的 key
+   * @param key key
+   */
+  private getPrefixedKey(key: string): string {
+    return `${this.prefix}${key}`
+  }
 }
 
-export const LocalStorageUtil = createStorageUtil(localStorage)
-export const SessionStorageUtil = createStorageUtil(sessionStorage)
+// 使用示例：带有统一前缀的 localStorage 和 sessionStorage 工具类
+const prefixKey = `${import.meta.env.VITE_APP_KEY}_`
+export const LocalStorageInstance = new StorageClass(localStorage, prefixKey)
+export const SessionStorageInstance = new StorageClass(sessionStorage, prefixKey)

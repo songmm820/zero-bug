@@ -10,6 +10,19 @@ import '@/utils/auto-update.tsx'
 // axios 实例
 import '@/axios/request.ts'
 import { ComponentConfig } from '@arco-design/web-react/es/ConfigProvider/interface'
+// 日志工具
+import Logger from '@/utils/logger'
+// 存储工具
+import { LocalStorageInstance, SessionStorageInstance } from '@/utils/storage-util'
+
+// 全局声明
+if (typeof globalThis.Tools === 'undefined') {
+  globalThis.Tools = {
+    Logger: Logger,
+    LocalStorage: LocalStorageInstance,
+    SessionStorage: SessionStorageInstance
+  }
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
