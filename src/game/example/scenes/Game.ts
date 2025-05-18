@@ -3,7 +3,7 @@
  * @author songmm
  */
 import Phaser, { Scene } from 'phaser'
-import { EventBus } from '../EventBus'
+import { EventBus } from '../../EventBus.ts'
 
 export class MenuScene extends Scene {
   camera?: Phaser.Cameras.Scene2D.Camera

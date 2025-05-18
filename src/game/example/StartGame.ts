@@ -1,5 +1,5 @@
 import Phaser, { AUTO, Game } from 'phaser'
-import { BootScene } from './scenes/BootScene.ts'
+import { BootScene } from '@/game/example/scenes/BootScene.ts'
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
