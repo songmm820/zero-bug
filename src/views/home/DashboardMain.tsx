@@ -2,13 +2,13 @@
  * Views：home Main
  * @author songmm
  */
-import PhaserGame from '@/game/example/PhaserGame.tsx'
+import PhaserExampleGame from '@/games/phaser-example/PhaserExampleGame.tsx'
 
 function DashboardMain() {
   return (
     <>
       <div className="relative">
-        <PhaserGame />
+        <PhaserExampleGame />
       </div>
     </>
   )

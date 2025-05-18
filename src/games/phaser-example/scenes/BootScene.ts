@@ -1,5 +1,5 @@
 /**
- * 场景：启动
+ * 场景：游戏入口
  * @author songmm
  */
 import Phaser, { Scene } from 'phaser'
@@ -140,11 +140,11 @@ export class BootScene extends Scene {
   }
 
   preload() {
-    this.load.image('sky', 'assets/game-example/sky.png')
-    this.load.image('ground', 'assets/game-example/platform.png')
-    this.load.image('star', 'assets/game-example/star.png')
-    this.load.image('bomb', 'assets/game-example/bomb.png')
-    this.load.spritesheet('dude', 'assets/game-example/dude.png', { frameWidth: 32, frameHeight: 48 })
+    this.load.image('sky', 'assets/phaser-example/sky.png')
+    this.load.image('ground', 'assets/phaser-example/platform.png')
+    this.load.image('star', 'assets/phaser-example/star.png')
+    this.load.image('bomb', 'assets/phaser-example/bomb.png')
+    this.load.spritesheet('dude', 'assets/phaser-example/dude.png', { frameWidth: 32, frameHeight: 48 })
   }
 
   create() {

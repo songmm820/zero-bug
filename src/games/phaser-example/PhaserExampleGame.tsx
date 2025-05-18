@@ -8,11 +8,11 @@ import Phaser from 'phaser'
 
 import StartGame from '@/games/phaser-example/StartGame.ts'
 
-function PhaserGame() {
+function PhaserExampleGame() {
   const game = useRef<Phaser.Game>()
 
   useLayoutEffect(() => {
-    game.current = StartGame('games-container')
+    game.current = StartGame('game-container')
 
     return () => {
       game.current?.destroy(true)
@@ -24,4 +24,4 @@ function PhaserGame() {
   return <div id="game-container"></div>
 }
 
-export default PhaserGame
+export default PhaserExampleGame
