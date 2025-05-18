@@ -8,19 +8,19 @@ import { createHashRouter, Navigate } from 'react-router-dom'
 import { LazyImportComponent } from './router-load'
 import { lazy } from 'react'
 
-const HomeView = lazy(() => import('@/views/home/HomeView'))
+const PhaserExampleGame = lazy(() => import('@/games/phaser-example/PhaserExampleGame.tsx'))
 const NotFoundView = lazy(() => import('@/views/error/NotFoundView'))
 const SignView = lazy(() => import('@/views/sign/SignView.tsx'))
 
 const router = createHashRouter([
   {
     path: '/',
-    element: <Navigate to="/dashboard" replace />
+    element: <Navigate to="/phaser-example" replace />
   },
-  // dashboard
+  // phaser-example
   {
-    path: '/dashboard',
-    element: <LazyImportComponent lazyChildren={HomeView} isRequiredAuth={false} isTrackPageView={false} />,
+    path: '/phaser-example',
+    element: <LazyImportComponent lazyChildren={PhaserExampleGame} isRequiredAuth={false} isTrackPageView={false} />,
     loader: () => {
       return Promise.resolve(true)
     }
