@@ -1,13 +1,18 @@
+/**
+ * 游戏：Phaser 官方入门示例
+ * @author songmm
+ */
+
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import Phaser from 'phaser'
 
-import StartGame from '@/game/example/StartGame.ts'
+import StartGame from '@/games/phaser-example/StartGame.ts'
 
 function PhaserGame() {
   const game = useRef<Phaser.Game>()
 
   useLayoutEffect(() => {
-    game.current = StartGame('game-container')
+    game.current = StartGame('games-container')
 
     return () => {
       game.current?.destroy(true)
