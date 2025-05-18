@@ -78,7 +78,7 @@ export class BootScene extends Scene {
     // 添加星星
     this.stars = this.physics.add.group({
       key: 'star',
-      repeat: 11,
+      repeat: 4,
       setXY: { x: 70, y: 0, stepX: 120 }
     })
     // 设置starts children设置每个星星的弹性
@@ -91,13 +91,15 @@ export class BootScene extends Scene {
     })
     // 设置星星与平台的碰撞
     this.physics.add.collider(this.stars, this.platforms)
+    // 设置星星与玩家的碰撞
+    this.physics.add.overlap(this.player, this.stars, this.collectStar, () => {}, this)
   }
 
   // 收集星星
   private collectStar: ArcadePhysicsCallback = (_player, star) => {
     const starSprite = star as SpriteWithDynamicBody
-    // 禁用星星的物理身体，表示它被收集掉了
-    starSprite.disableBody(true, true)
+    // 销毁
+    starSprite.destroy()
     // 更新分数
     this.score += 10
     this.updateScore(this.score)
@@ -118,6 +120,8 @@ export class BootScene extends Scene {
     })
     // 炸弹与平台的碰撞
     this.physics.add.collider(this.bombs, this.platforms)
+    // 检测玩家和炸弹是否发生重叠
+    this.physics.add.overlap(this.player, this.bombs, this.hitBomb, () => {}, this)
   }
 
   // 碰到炸弹
@@ -161,10 +165,6 @@ export class BootScene extends Scene {
     this.createStars()
     // 创建炸弹
     this.createBombs()
-    // 检测玩家和星星是否发生重叠
-    this.physics.add.overlap(this.player, this.stars, this.collectStar, () => {}, this)
-    // 检测玩家和炸弹是否发生重叠
-    this.physics.add.overlap(this.player, this.bombs, this.hitBomb, () => {}, this)
   }
 
   update() {
