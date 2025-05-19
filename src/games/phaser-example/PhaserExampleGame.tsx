@@ -5,8 +5,7 @@
 
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import Phaser from 'phaser'
-
-import StartGame from '@/games/phaser-example/StartGame.ts'
+import StartGame from '@/games/phaser-example/StartGame'
 
 function PhaserExampleGame() {
   const game = useRef<Phaser.Game>()

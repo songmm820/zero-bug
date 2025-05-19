@@ -8,11 +8,11 @@ import { BootScene } from '@/games/phaser-example/scenes/BootScene'
  * 启动游戏
  * @param parent 游戏dom容器
  */
-const StartGame = (parent: string) => {
+const StartGame = (parent: string, width: number, height: number) => {
   const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
-    width: 800,
-    height: 700,
+    width: width,
+    height: height,
     parent: parent,
     physics: {
       default: 'arcade',

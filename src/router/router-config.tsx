@@ -8,9 +8,9 @@ import { createHashRouter, Navigate } from 'react-router-dom'
 import { LazyImportComponent } from './router-load'
 import { lazy } from 'react'
 
-const PhaserExampleGame = lazy(() => import('@/games/phaser-example/PhaserExampleGame.tsx'))
+const PhaserExampleGame = lazy(() => import('@/games/phaser-example/PhaserExampleGame'))
 const NotFoundView = lazy(() => import('@/views/error/NotFoundView'))
-const SignView = lazy(() => import('@/views/sign/SignView.tsx'))
+const SignView = lazy(() => import('@/views/sign/SignView'))
 
 const router = createHashRouter([
   {

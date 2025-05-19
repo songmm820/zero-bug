@@ -5,7 +5,7 @@
 
 import React, { LazyExoticComponent, Suspense } from 'react'
 import FullScreenLoading from '@/components/Loading/FullScreenLoading'
-import PermissionRouter from '@/components/PermissionRouter/PermissionRouter.tsx'
+import PermissionRouter from '@/components/PermissionRouter/PermissionRouter'
 
 type ILazyImportComponentProps = {
   /**

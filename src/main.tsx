@@ -6,9 +6,9 @@ import App from '@/App'
 import { ConfigProvider } from '@arco-design/web-react'
 import { Toaster } from 'react-hot-toast'
 // 自动更新脚本
-import '@/utils/auto-update.tsx'
+import '@/utils/auto-update'
 // axios 实例
-import '@/axios/request.ts'
+import '@/axios/request'
 import { ComponentConfig } from '@arco-design/web-react/es/ConfigProvider/interface'
 // 日志工具
 import Logger from '@/utils/logger'

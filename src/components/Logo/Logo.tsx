@@ -4,7 +4,7 @@
  */
 
 import logo from '@/assets/logo/logo.svg'
-import { APP_NAME } from '@/constants/app.ts'
+import { APP_NAME } from '@/constants/app'
 import { CSSProperties } from 'react'
 
 type IProps = {

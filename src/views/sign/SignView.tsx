@@ -6,7 +6,7 @@
 import { useAtomValue } from 'jotai'
 import { appStateAtom } from '@/jotai-atoms/app-store'
 import useTheme from '@/hooks/use-theme'
-import useTimer from '@/hooks/use-timer.ts'
+import useTimer from '@/hooks/use-timer'
 
 function SignView() {
   // 获取APP原子信息

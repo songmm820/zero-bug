@@ -6,8 +6,8 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { GetAuth } from '@/utils/auth-util'
-import { ROUTER_PATH } from '@/constants/app.ts'
-import { trackPageView } from '@/utils/tracking.ts'
+import { ROUTER_PATH } from '@/constants/app'
+import { trackPageView } from '@/utils/tracking'
 
 const DEFAULT_TITLE_PREFIX = import.meta.env.VITE_APP_TITLE
 const DEFAULT_TITLE = ''

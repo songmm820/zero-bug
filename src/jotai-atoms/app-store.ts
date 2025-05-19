@@ -3,8 +3,8 @@
  * @author songmm
  */
 import { atom } from 'jotai'
-import { APP_NAME } from '@/constants/app.ts'
-import { GetLang, GetOS } from '@/utils/system-util.ts'
+import { APP_NAME } from '@/constants/app'
+import { GetLang, GetOS } from '@/utils/system-util'
 
 type IAppState = {
   /* 应用名称 */

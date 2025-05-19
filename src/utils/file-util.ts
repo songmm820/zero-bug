@@ -3,7 +3,7 @@
  * @author songmm
  */
 
-import { GetOS } from '@/utils/system-util.ts'
+import { GetOS } from '@/utils/system-util'
 
 /**
  * 打开文件选择对话框（纯 Web 环境）
