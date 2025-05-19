@@ -1,5 +1,10 @@
+/**
+ * 游戏：启动函数
+ * @author songmm
+ */
+
 import Phaser, { AUTO, Game } from 'phaser'
-import { BootScene } from '@/games/phaser-example/scenes/BootScene'
+import { BootScene } from './scenes/boot-scene'
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -8,7 +13,7 @@ import { BootScene } from '@/games/phaser-example/scenes/BootScene'
  * 启动游戏
  * @param parent 游戏dom容器
  */
-const StartGame = (parent: string, width: number, height: number) => {
+const startGame = (parent: string, width: number, height: number) => {
   const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
     width: width,
@@ -21,9 +26,9 @@ const StartGame = (parent: string, width: number, height: number) => {
         debug: false
       }
     },
-    scene: [new BootScene('BootStart')]
+    scene: [new BootScene()]
   }
   return new Game(config)
 }
 
-export default StartGame
+export default startGame

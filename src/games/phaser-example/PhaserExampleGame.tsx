@@ -5,13 +5,13 @@
 
 import { useEffect, useLayoutEffect, useRef } from 'react'
 import Phaser from 'phaser'
-import StartGame from '@/games/phaser-example/StartGame'
+import startGame from '@/games/phaser-example/start-game'
 
 function PhaserExampleGame() {
   const game = useRef<Phaser.Game>()
 
   useLayoutEffect(() => {
-    game.current = StartGame('game-container')
+    game.current = startGame('game-container')
 
     return () => {
       game.current?.destroy(true)

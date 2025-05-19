@@ -9,6 +9,7 @@ import { LazyImportComponent } from './router-load'
 import { lazy } from 'react'
 
 const PhaserExampleGame = lazy(() => import('@/games/phaser-example/PhaserExampleGame'))
+const FrurtNinjaGame = lazy(() => import('@/games/fruit-ninja/FruitNinjaGame'))
 const NotFoundView = lazy(() => import('@/views/error/NotFoundView'))
 const SignView = lazy(() => import('@/views/sign/SignView'))
 
@@ -21,6 +22,14 @@ const router = createHashRouter([
   {
     path: '/phaser-example',
     element: <LazyImportComponent lazyChildren={PhaserExampleGame} isRequiredAuth={false} isTrackPageView={false} />,
+    loader: () => {
+      return Promise.resolve(true)
+    }
+  },
+  // fruit-ninja
+  {
+    path: '/fruit-ninja',
+    element: <LazyImportComponent lazyChildren={FrurtNinjaGame} isRequiredAuth={false} isTrackPageView={false} />,
     loader: () => {
       return Promise.resolve(true)
     }
