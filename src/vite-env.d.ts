@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /// <reference types="vite/client" />
 
 // 环境变量类型声明

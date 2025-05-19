@@ -34,9 +34,9 @@ async function getScripts() {
 }
 
 async function needUpdate() {
-  const newScripts = await getScripts() //调用newScripts
+  const newScripts = await getScripts() // 调用newScripts
   if (!lastScripts) {
-    //如果之前没有保存页面js地址的话，进行一次保存，初始化并存下当前数据
+    // 如果之前没有保存页面js地址的话，进行一次保存，初始化并存下当前数据
     lastScripts = newScripts
     return false
   }

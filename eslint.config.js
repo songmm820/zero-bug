@@ -49,7 +49,9 @@ export default [
       // console log 警告
       'no-console': 'warn',
       // 最后一行不使用逗号
-      'comma-dangle': ['error', 'never']
+      'comma-dangle': ['error', 'never'],
+      // 注释前后需要空格
+      'spaced-comment': ['error']
     }
   },
   // 配置全局变量，使用浏览器环境的全局变量
