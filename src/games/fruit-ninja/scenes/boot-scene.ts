@@ -3,24 +3,26 @@
  * @author songmm
  */
 
-import { SCENE_KEY, STATIC_RESOURCES } from '@/games/fruit-ninja/recource-constant'
-import BaseScene from './base-scene'
+import Phaser from 'phaser'
+import { STATIC_RESOURCES } from '@/games/fruit-ninja/recource-constant'
+import { SceneUtils } from '@/games/utils/scene-util'
 
-export class BootScene extends BaseScene {
-  constructor() {
-    super(SCENE_KEY.BOOT)
+export class BootScene extends Phaser.Scene {
+  constructor(key: string) {
+    super({
+      key: key
+    })
   }
 
   preload() {
-    this.loading()
     // 加载静态资源
     STATIC_RESOURCES.forEach((item) => {
       this.load.image(item.key, item.url)
     })
-    setTimeout(() => {
-      this.closeLoading()
-    }, 1500)
+    this.add.image(0, 0, 'background')
   }
 
-  create() {}
+  create() {
+    SceneUtils.fadeIn(this)
+  }
 }

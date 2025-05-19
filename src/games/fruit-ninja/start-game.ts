@@ -5,6 +5,7 @@
 
 import Phaser, { AUTO, Game } from 'phaser'
 import { BootScene } from './scenes/boot-scene'
+import { SCENE_KEY } from './recource-constant'
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -19,6 +20,8 @@ const startGame = (parent: string, width: number, height: number) => {
     width: width,
     height: height,
     parent: parent,
+    // 透明
+    transparent: true,
     physics: {
       default: 'arcade',
       arcade: {
@@ -26,7 +29,7 @@ const startGame = (parent: string, width: number, height: number) => {
         debug: false
       }
     },
-    scene: [new BootScene()]
+    scene: [new BootScene(SCENE_KEY.BOOT)]
   }
   return new Game(config)
 }
