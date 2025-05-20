@@ -9,10 +9,14 @@ import { useAtom } from 'jotai'
 import router from './router/router-config'
 import { updateScreenSizeAtom } from '@/jotai-atoms/app-store'
 import _ from 'lodash'
+import useTheme from '@/hooks/use-theme.ts'
 
 function App() {
   // 更新屏幕尺寸
   const [, updateScreenSize] = useAtom(updateScreenSizeAtom)
+
+  // 获取当前主题模式
+  const { theme, setTheme } = useTheme()
 
   /**
    * 监听窗口大小变化
@@ -26,6 +30,8 @@ function App() {
   useEffect(() => {
     // 监听窗口大小变化
     window.addEventListener('resize', _.debounce(handleResize, 300))
+    setTheme(theme)
+
     return () => {
       window.removeEventListener('resize', handleResize)
     }

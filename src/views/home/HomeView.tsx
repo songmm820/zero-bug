@@ -6,7 +6,9 @@
 function Home() {
   return (
     <>
-      <main className="bg-[#f5f5f7] flex flex-col w-full h-full overflow-auto">{/* main */}</main>
+      <main className="flex flex-col w-full h-full overflow-auto">
+        <div className="max-phone:text-[32px]">MAIN</div>
+      </main>
     </>
   )
 }
