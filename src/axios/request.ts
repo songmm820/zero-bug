@@ -64,15 +64,3 @@ export class AxiosClientClass {
     return this.instance.delete(url, { params })
   }
 }
-
-/**
- * 创建 axios 实例
- */
-export const axiosClient = new AxiosClientClass({
-  baseURL: '/whyApi',
-  timeout: 6000
-})
-
-// axiosClient.get('/douyinhot', {
-//   key: import.meta.env.VITE_WHY_API_KEY
-// })

@@ -53,12 +53,6 @@ export default ({ mode }) => {
           headers: {
             'Cache-Control': 'no-cache'
           }
-        },
-        // 百度翻译
-        '/baiduFanYiApi': {
-          target: env.VITE_BAIDU_FANYI_API,
-          changeOrigin: true,
-          rewrite: (path: string) => path.replace(/^\/baiduFanYiApi/, '')
         }
       }
     },

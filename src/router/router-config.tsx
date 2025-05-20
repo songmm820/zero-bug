@@ -10,7 +10,6 @@ import { lazy } from 'react'
 
 const HomeView = lazy(() => import('@/views/home/HomeView'))
 const NotFoundView = lazy(() => import('@/views/error/NotFoundView'))
-const SignView = lazy(() => import('@/views/sign/SignView.tsx'))
 
 const router = createHashRouter([
   {
@@ -24,11 +23,6 @@ const router = createHashRouter([
     loader: () => {
       return Promise.resolve(true)
     }
-  },
-  // sign
-  {
-    path: '/sign',
-    element: <LazyImportComponent lazyChildren={SignView} isRequiredAuth={false} title="登录" isTrackPageView />
   },
   // 404 Not Found
   {
