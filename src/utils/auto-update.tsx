@@ -4,8 +4,6 @@
  * 2.哈希对比：通过解析HTML中script标签指纹判断更新
  * 3.强制刷新：检测到更新后提示用户刷新页面
  */
-import { mountAnyWhere } from '@/utils/dom.ts'
-import SystemUpdateModal from '@/views/system/SystemUpdateModal.tsx'
 
 // 请求首页
 let lastScripts: string[] | null = null
@@ -55,16 +53,16 @@ async function needUpdate() {
 }
 
 // 立即刷新
-const refreshNow = () => {
-  setTimeout(() => {
-    window.location.reload()
-  }, 250)
-}
+// const refreshNow = () => {
+//   setTimeout(() => {
+//     window.location.reload()
+//   }, 250)
+// }
 
 // 5s后自动刷新
-const autoRefresh = () => {
-  setTimeout(refreshNow, 5000)
-}
+// const autoRefresh = () => {
+//   setTimeout(refreshNow, 5000)
+// }
 
 // 定时轮询检测更新
 function AutoCheckUpdate() {
@@ -72,7 +70,8 @@ function AutoCheckUpdate() {
     // 调用检查更新函数
     const willUp = await needUpdate()
     if (willUp) {
-      mountAnyWhere(<SystemUpdateModal visible afterClose={refreshNow} onCancel={autoRefresh} />, document.body)
+      // mountAnyWhere(<SystemUpdateModal visible afterClose={refreshNow} onCancel={autoRefresh} />, document.body)
+      alert('发现新版本，请刷新页面')
     }
 
     AutoCheckUpdate()

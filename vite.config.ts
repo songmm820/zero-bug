@@ -2,7 +2,6 @@ import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
-import { vitePluginForArco } from '@arco-plugins/vite-react'
 
 const host = process.env.TAURI_DEV_HOST
 
@@ -13,13 +12,7 @@ export default ({ mode }) => {
 
   return defineConfig({
     base: env.VITE_SECOND_DEPLOY_DIR,
-    plugins: [
-      react(),
-      tailwindcss(),
-      vitePluginForArco({
-        style: 'css'
-      })
-    ],
+    plugins: [react(), tailwindcss()],
     css: {
       preprocessorOptions: {
         scss: {}
