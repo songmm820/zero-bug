@@ -3,7 +3,6 @@
  * @author songmm
  * @see https://iconpark.oceanengine.com/projects
  */
-import style from './index.module.scss'
 
 type IconParkProps = {
   icon: string
@@ -14,7 +13,7 @@ type IconParkProps = {
 
 function IconPark(props: IconParkProps) {
   // Icon Color
-  const iconColor = props.color || '#606266'
+  const iconColor = props.color || 'var(--foreground)'
   // Icon Size
   const iconSize = props.size || 18
 
@@ -29,11 +28,13 @@ function IconPark(props: IconParkProps) {
 
   return (
     <>
-      <div className={style['icon-container']}>
-        <svg className={style['icon']} aria-hidden={true} style={{ color: iconColor }} width={iconSize} height={iconSize} onClick={() => handleClick()}>
-          <use xlinkHref={`#${props.icon}`}></use>
-        </svg>
-      </div>
+      <button className="hover:bg-accent rounded-sm transition-all duration-200 ease-in-out" onClick={() => handleClick()}>
+        <div className="inline-flex items-center justify-center p-2">
+          <svg aria-hidden={true} style={{ color: iconColor }} width={iconSize} height={iconSize}>
+            <use xlinkHref={`#${props.icon}`}></use>
+          </svg>
+        </div>
+      </button>
     </>
   )
 }

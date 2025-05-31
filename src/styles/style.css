@@ -14,9 +14,9 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  --breakpoint-phone: 576px;
-  --breakpoint-pad: 768px;
-  --breakpoint-pc: 992px;
+  --breakpoint-phone: 36rem;
+  --breakpoint-pad: 54rem;
+  --breakpoint-pc: 62rem;
 }
 
 /* 聚合类 */
@@ -49,6 +49,7 @@
   }
 }
 
+/* shadcn ui */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

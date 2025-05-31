@@ -1,6 +1,6 @@
 ## 关于样式的响应式处理
 ### 1. 主题模式切换
-通过修改Html标签的data-theme属性，来切换主题模式。主题的组件颜色处理通过tailwindcss来实现，我们仅需要手动声明tailwindcss中dark变体来处理组件在不同主题下的样式。<br/>
+通过修改Html标签的`data-theme='datk'` ' | `class = 'dark'` 属性，来切换主题模式。主题的组件颜色处理通过tailwindcss来实现，我们仅需要手动声明tailwindcss中dark变体来处理组件在不同主题下的样式。<br/>
 
 例如：`<div class='dark:bg-[blue]'>暗色模式</div>`
 <br/>

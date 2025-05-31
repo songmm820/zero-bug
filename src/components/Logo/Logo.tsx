@@ -3,7 +3,7 @@
  * @author songmm
  */
 
-import logo from '@/assets/logo/logo.svg'
+import logo from '@/assets/logo.png'
 import { APP_NAME } from '@/constants/app.ts'
 import { CSSProperties } from 'react'
 
@@ -14,7 +14,7 @@ type IProps = {
 
 function Logo(props: IProps) {
   // 默认属性
-  const { size = 40, radius = 0 } = props
+  const { size = 24, radius = 0 } = props
 
   // 样式
   const style: CSSProperties = {

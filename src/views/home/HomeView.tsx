@@ -2,15 +2,16 @@
  * Views：home dashboard 界面
  * @author songmm
  */
-import { Button } from '@/components/ui/button'
+
+import HomeHeader from './header/HomeHeader.tsx'
+import HomeMain from '@/views/home/HomeMain.tsx'
 
 function Home() {
   return (
     <>
       <main className="flex flex-col w-full h-full overflow-auto">
-        <div className="max-phone:text-[32px]">
-          <Button>Click me</Button>
-        </div>
+        <HomeHeader />
+        <HomeMain />
       </main>
     </>
   )
