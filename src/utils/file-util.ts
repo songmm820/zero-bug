@@ -3,7 +3,7 @@
  * @author songmm
  */
 
-import { GetOS } from '@/utils/system-util.ts'
+import { getOS } from '@/utils/system-util.ts'
 
 /**
  * 打开文件选择对话框（纯 Web 环境）
@@ -11,8 +11,8 @@ import { GetOS } from '@/utils/system-util.ts'
  * @param multiple 是否允许多选
  * @returns Promise<File[]> 始终返回文件数组（空数组表示取消或未选择）
  */
-export function SelectFile(accept: string = '*', multiple: boolean = false): Promise<File[]> {
-  const os = GetOS()
+export function selectFile(accept: string = '*', multiple: boolean = false): Promise<File[]> {
+  const os = getOS()
   if (os === 'web') {
     return new Promise<File[]>((resolve) => {
       const input = document.createElement('input')
@@ -42,7 +42,7 @@ export function SelectFile(accept: string = '*', multiple: boolean = false): Pro
  * 接受一个 File 对象，返回一个可预览的 src url
  * @param file 文件对象
  */
-export function GetFilePreviewSrc(file: File): string {
+export function getFilePreviewSrc(file: File): string {
   return URL.createObjectURL(file)
 }
 
@@ -52,7 +52,7 @@ export function GetFilePreviewSrc(file: File): string {
  * @param decimals 保留的小数位数（默认2位）
  * @returns 格式化后的字符串（如 "1.23 MB"）
  */
-export function GetReadableFileSize(size: number, decimals: number = 2): string {
+export function getReadableFileSize(size: number, decimals: number = 2): string {
   if (size <= 0) return '0 Bytes'
   const k = 1024
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
@@ -70,10 +70,10 @@ export function GetReadableFileSize(size: number, decimals: number = 2): string 
  * @param fileName 文件名
  */
 export function DownloadFile(File: File, fileName?: string): void {
-  const os = GetOS()
+  const os = getOS()
   if (os === 'web') {
     const a = document.createElement('a')
-    a.href = GetFilePreviewSrc(File)
+    a.href = getFilePreviewSrc(File)
     a.download = fileName || File.name
     a.click()
   }
@@ -83,7 +83,7 @@ export function DownloadFile(File: File, fileName?: string): void {
  * 下载文件Url
  */
 export function DownloadFileUrl(url: string, fileName: string): void {
-  const os = GetOS()
+  const os = getOS()
   if (os === 'web') {
     const a = document.createElement('a')
     a.href = url

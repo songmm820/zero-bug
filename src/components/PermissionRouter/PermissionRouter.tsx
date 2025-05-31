@@ -5,7 +5,7 @@
 
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { GetAuth } from '@/utils/auth-util'
+import { getAuth } from '@/utils/auth-util'
 import { ROUTER_PATH } from '@/constants/app.ts'
 import { trackPageView } from '@/utils/tracking.ts'
 
@@ -45,7 +45,7 @@ export function PermissionRouter(props: IPermissionRouterProps) {
   const navigate = useNavigate()
   const location = useLocation()
   // 获取本地存储中的认证信息
-  const localData = GetAuth()
+  const localData = getAuth()
 
   useEffect(() => {
     // 用户页面埋点

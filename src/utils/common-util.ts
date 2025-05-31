@@ -3,7 +3,7 @@
  * @param length 生成的ID长度（默认9）
  * @returns 由字母和数字组成的随机字符串
  */
-export function CreateID(length: number = 9): string {
+export function createID(length: number = 9): string {
   if (length <= 0) return '' // 边界情况处理
 
   if (typeof crypto !== 'undefined' && crypto.getRandomValues) {

@@ -4,7 +4,7 @@
  */
 import { atom } from 'jotai'
 import { APP_NAME } from '@/constants/app.ts'
-import { GetLang, GetOS } from '@/utils/system-util.ts'
+import { getLang, getOS } from '@/utils/system-util.ts'
 
 type IAppState = {
   /* 应用名称 */
@@ -28,9 +28,9 @@ export const screenWidthAtom = atom(window.innerWidth)
 // 屏幕高度
 export const screenHeightAtom = atom(window.innerHeight)
 // 当前平台
-export const platformAtom = atom(GetOS())
+export const platformAtom = atom(getOS())
 // 当前语言
-export const languageAtom = atom(GetLang())
+export const languageAtom = atom(getLang())
 
 // 派生原子 包含所有APP状态
 export const appStateAtom = atom<IAppState>((get) => {
