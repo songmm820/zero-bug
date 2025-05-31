@@ -17,7 +17,8 @@
     "build": "tsc && vite build --mode=production",
     "build:github-actions": "tsc && vite build --mode=production",
     "preview": "vite preview --open",
-    "tauri": "tauri dev"
+    "tauri": "tauri dev",
+    "tauri-build": "tauri build"
   },
   "engines": {
     "node": ">=18.0.0"
