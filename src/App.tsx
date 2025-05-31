@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom'
 import { useAtom } from 'jotai'
 import router from './router/router-config'
 import { updateScreenSizeAtom } from '@/jotai-atoms/app-store'
-import _ from 'lodash'
+import { debounce } from 'lodash'
 import useTheme from '@/hooks/use-theme.ts'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
 
   useEffect(() => {
     // 监听窗口大小变化
-    window.addEventListener('resize', _.debounce(handleResize, 300))
+    window.addEventListener('resize', debounce(handleResize, 300))
     setTheme(theme)
 
     return () => {

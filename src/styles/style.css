@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
 
 /* 艺术字体 */
 @font-face {
@@ -49,7 +48,6 @@
   }
 }
 
-/* shadcn ui */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

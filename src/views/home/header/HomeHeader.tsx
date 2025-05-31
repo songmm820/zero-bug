@@ -38,13 +38,7 @@ function HomeHeader() {
       exit: { y: '-100%', transition: { duration: 0.35, ease: 'easeInOut' } }
     }
     return (
-      <motion.nav
-        className="absolute w-full py-6 rounded-bl-xl rounded-br-xl bg-secondary common-shadow z-[-1]"
-        initial="hidden"
-        animate="visible"
-        exit="exit"
-        variants={menuVariants}
-      >
+      <motion.nav className="absolute w-full py-6 bg-secondary common-shadow z-[-1]" initial="hidden" animate="visible" exit="exit" variants={menuVariants}>
         <div className="px-4 mx-auto sm:px-6 pc:px-8">
           <div className="flex items-center justify-between">
             <p className="font-semibold tracking-widest uppercase">Menu</p>
