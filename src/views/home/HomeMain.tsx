@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { invoke } from '@tauri-apps/api/core'
 import { Window } from '@tauri-apps/api/window'
+import { getCurrentWindow } from '@tauri-apps/api/window'
 
 /**
  * Views：Main
@@ -34,6 +35,16 @@ function HomeMain() {
     appWindow.once('tauri://error', function () {
       // an error happened creating the window
     })
+
+    await appWindow.emit('some-event', 'data')
+
+    await appWindow.listen('some-event', function () {})
+  }
+
+  // 居中窗口
+  async function centerWindow() {
+    const appWindow = getCurrentWindow()
+    await appWindow.center()
   }
 
   // 获取当前网络局域网设备
@@ -43,6 +54,7 @@ function HomeMain() {
       <div>{invokeMessage}</div>
       <button onClick={() => callPlugin()}>invoke命令</button>
       <button onClick={() => createWindow()}>创建窗口</button>
+      <button onClick={() => centerWindow()}>窗口居中</button>
     </main>
   )
 }
