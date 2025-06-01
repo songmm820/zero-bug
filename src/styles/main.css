@@ -10,6 +10,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background: transparent;
 }
 
 /* 设置滚动条的高度（水平滚动条） */
