@@ -157,6 +157,6 @@
 
 @layer base {
   body {
-    @apply text-foreground;
+    @apply bg-background text-foreground;
   }
 }
