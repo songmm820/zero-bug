@@ -21,6 +21,7 @@ export default ({ mode }) => {
     server: {
       port: 1420,
       strictPort: true,
+      hmr: true,
       proxy: {
         // whyApi
         '/whyApi': {
