@@ -39,7 +39,7 @@ function ColorPicker(props: IColorPickerProps) {
 
   return (
     <div className="cursor-pointer w-10 h-10 rounded-full flex flex-col items-center justify-center" style={styleAttributes} onClick={onSelectColor}>
-      <input ref={colorInputRef} className="appearance-none opacity-0" value={currentColor} type="color" onChange={handleColorChange} />
+      <input ref={colorInputRef} className="appearance-none opacity-0 w-full h-full" value={currentColor} type="color" onChange={handleColorChange} />
     </div>
   )
 }
