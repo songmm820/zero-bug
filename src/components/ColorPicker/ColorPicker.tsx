@@ -4,7 +4,7 @@
  */
 import { ChangeEvent, CSSProperties, useRef, useState } from 'react'
 
-export interface IProps {
+export interface IColorPickerProps {
   /**
    * 颜色
    */
@@ -15,7 +15,7 @@ export interface IProps {
   onChange?: (color: string) => void
 }
 
-function ColorPicker(props: IProps) {
+function ColorPicker(props: IColorPickerProps) {
   const { value = '#000' } = props
   // 当前颜色
   const [currentColor, setColor] = useState<string>(value)
