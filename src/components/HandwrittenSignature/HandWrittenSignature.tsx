@@ -3,8 +3,8 @@
  * @author songmm
  */
 
-import { memo, forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState, MouseEvent } from 'react'
-import ColorPicker from '@/components/ColorPicker/ColorPicker.tsx'
+import { forwardRef, memo, MouseEvent, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import SignatureSettingTools from '@/components/HandwrittenSignature/SignatureSettingTools.tsx'
 
 export interface ISignatureProps {
   /**
@@ -26,9 +26,13 @@ export interface ISignatureRef {
    * 获取签名数据
    */
   getSignature?: (format: 'base64' | 'blob') => Promise<string | Blob | null | undefined>
+  /**
+   * 撤销上一步
+   */
+  undo: () => void
 }
 
-function HandWrittenSignature(props: ISignatureProps, ref: Ref<ISignatureRef>) {
+function HandWrittenSignature(_props: ISignatureProps, ref: Ref<ISignatureRef>) {
   // 容器Ref
   const containerRef = useRef<HTMLDivElement | null>(null)
   // 画布Ref
@@ -174,8 +178,9 @@ function HandWrittenSignature(props: ISignatureProps, ref: Ref<ISignatureRef>) {
   }
 
   useImperativeHandle(ref, () => ({
-    clearSignature: clearSignature,
-    getSignature: getSignature
+    clearSignature,
+    getSignature,
+    undo
   }))
 
   useEffect(() => {
@@ -199,32 +204,10 @@ function HandWrittenSignature(props: ISignatureProps, ref: Ref<ISignatureRef>) {
 
   return (
     <>
-      <div ref={containerRef} className="w-full h-full p-5 bg-white rounded-2xl flex flex-col items-center justify-center gap-4">
-        {/* 颜色选择器 */}
-        <div>
-          <ColorPicker value={paintingBrushColor} onChange={handleColorChange} />
-        </div>
+      <div ref={containerRef} className="w-full h-full p-5 rounded-2xl flex flex-col items-center justify-center gap-4">
+        <canvas className="flex-1 w-full rounded-xl" ref={canvasRef} onMouseDown={onStartDraw} onMouseMove={onDrawing} onMouseUp={onStopDraw} onMouseLeave={onStopLeave} />
 
-        <canvas
-          className="flex-1 w-full border-dashed border-1 rounded-xl border-gray-700"
-          ref={canvasRef}
-          onMouseDown={onStartDraw}
-          onMouseMove={onDrawing}
-          onMouseUp={onStopDraw}
-          onMouseLeave={onStopLeave}
-        ></canvas>
-
-        <div className="flex justify-center gap-5">
-          <button className="text-background" onClick={() => getSignature()}>
-            保存签名
-          </button>
-          <button className="text-background" onClick={() => clearSignature()}>
-            清空签名
-          </button>
-          <button className="text-background" onClick={() => undo()}>
-            撤销
-          </button>
-        </div>
+        <SignatureSettingTools color={paintingBrushColor} onChangeColor={handleColorChange} />
       </div>
     </>
   )

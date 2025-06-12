@@ -2,8 +2,7 @@
  * Views：Main
  * @author songmm
  */
-
-import HandWrittenSignature from '@/components/HandWrittenSignature/HandWrittenSignature.tsx'
+import HandWrittenSignature from '@/components/HandwrittenSignature/HandWrittenSignature.tsx'
 
 function HomeMain() {
   return (
