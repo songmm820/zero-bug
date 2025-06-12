@@ -2,7 +2,7 @@
  * Component：颜色选择组件
  * @author songmm
  */
-import { ChangeEvent, CSSProperties, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, CSSProperties, useRef, useState } from 'react'
 
 export interface IColorPickerProps {
   /**
@@ -37,13 +37,9 @@ function ColorPicker(props: IColorPickerProps) {
     props.onChange?.(event.target.value)
   }
 
-  useEffect(() => {
-    setColor(value)
-  }, [props.value])
-
   return (
-    <div className="w-6 h-6 rounded-full flex flex-col items-center justify-center" style={styleAttributes} onClick={onSelectColor}>
-      <input ref={colorInputRef} className="cursor-pointer appearance-none opacity-0 w-full h-full" value={currentColor} type="color" onChange={handleColorChange} />
+    <div className="cursor-pointer w-10 h-10 rounded-full flex flex-col items-center justify-center" style={styleAttributes} onClick={onSelectColor}>
+      <input ref={colorInputRef} className="appearance-none opacity-0" value={currentColor} type="color" onChange={handleColorChange} />
     </div>
   )
 }
