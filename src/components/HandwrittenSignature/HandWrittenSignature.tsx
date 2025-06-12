@@ -3,10 +3,10 @@
  * @author songmm
  */
 
-import React, { forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { memo, forwardRef, Ref, useEffect, useImperativeHandle, useRef, useState, MouseEvent } from 'react'
 import ColorPicker from '@/components/ColorPicker/ColorPicker.tsx'
 
-export interface IProps {
+export interface ISignatureProps {
   /**
    * 绘制区域宽度
    */
@@ -15,14 +15,6 @@ export interface IProps {
    * 绘制区域高度
    */
   height?: number
-  /**
-   * 清空重新绘制函数
-   */
-  clear?: () => void
-  /**
-   * 获取签名数据函数
-   */
-  getSignature?: (signature: string) => void
 }
 
 export interface ISignatureRef {
@@ -33,17 +25,24 @@ export interface ISignatureRef {
   /**
    * 获取签名数据
    */
-  getSignature: () => string | null
+  getSignature?: (format: 'base64' | 'blob') => Promise<string | Blob | null | undefined>
 }
 
-function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
+function HandWrittenSignature(props: ISignatureProps, ref: Ref<ISignatureRef>) {
+  // 容器Ref
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  // 画布Ref
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  // 绘画状态
   const [isDrawing, setIsDrawing] = useState<boolean>(false)
   // 画布上下文设置
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
+  // 画布位置
   const [canvasRect, setCanvasRect] = useState<DOMRect | null>(null)
   // 画笔颜色
-  const [paintingBrushColor, setPaintingBrushColor] = useState<string>('#000000')
+  const [paintingBrushColor, setPaintingBrushColor] = useState<string>('#0062FF')
+  // 绘制路径栈，并且保存每个路径的颜色，以便撤销时恢复颜色
+  const paths = useRef<{ points: { x: number; y: number }[]; color: string }[]>([])
 
   // 设置画布属性
   function setCanvasAttr() {
@@ -51,21 +50,22 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    setContext(ctx)
+    // 画布尺寸取canvas元素尺寸
+    canvas.width = canvas.clientWidth
+    canvas.height = canvas.clientHeight
     // 设置绘制样式
     ctx.lineWidth = 1
-    // 设置画笔颜色
-    ctx.strokeStyle = '#0062ff'
     ctx.lineCap = 'round'
-    // 设置画布宽高
-    canvas.width = props.width || 800
-    canvas.height = props.height || 600
+    ctx.lineJoin = 'round'
+    // 设置画笔颜色
+    ctx.strokeStyle = paintingBrushColor
+    setContext(ctx)
     // 缓存画布位置
     setCanvasRect(canvas.getBoundingClientRect())
   }
 
   // 计算坐标
-  const getCoordinates = (event: React.MouseEvent<HTMLCanvasElement>) => {
+  function getCoordinates(event: MouseEvent<HTMLCanvasElement>) {
     if (!canvasRect) return { x: 0, y: 0 }
     const { left, top } = canvasRect
     return {
@@ -75,20 +75,24 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
   }
 
   // 开始绘制
-  function onStartDraw(event: React.MouseEvent<HTMLCanvasElement>) {
+  function onStartDraw(event: MouseEvent<HTMLCanvasElement>) {
     if (!context) return
     const { x, y } = getCoordinates(event)
     context.beginPath()
     context.moveTo(x, y)
     setIsDrawing(true)
+    // 开始新的路径并记录当前颜色
+    paths.current.push({ points: [{ x, y }], color: paintingBrushColor })
   }
 
   // 绘制中
-  function onDrawing(event: React.MouseEvent<HTMLCanvasElement>) {
+  function onDrawing(event: MouseEvent<HTMLCanvasElement>) {
     if (!context || !isDrawing) return
     const { x, y } = getCoordinates(event)
     context.lineTo(x, y)
     context.stroke()
+    // 保存当前路径点
+    paths.current[paths.current.length - 1].points.push({ x, y })
   }
 
   // 停止绘制
@@ -105,11 +109,50 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
     onStopDraw()
   }
 
+  // 重新绘制所有路径
+  function redrawAllPaths() {
+    if (!context) return
+    paths.current.forEach((path) => {
+      context.beginPath()
+      context.moveTo(path.points[0].x, path.points[0].y)
+      // 使用路径记录的颜色
+      context.strokeStyle = path.color
+      path.points.forEach((point) => {
+        context.lineTo(point.x, point.y)
+        context.stroke()
+      })
+    })
+  }
+
+  // 撤销上一次笔画
+  function undo() {
+    if (!context || !paths.current.length) return
+    if (paths.current.length === 0) return
+    // 弹出最后一个路径
+    paths.current.pop()
+    // 清空画布
+    clearSignature()
+    // 重新绘制剩下的路径
+    redrawAllPaths()
+    // 如果全部已经撤销，恢复当前画笔颜色
+    if (paths.current.length === 0) {
+      context.strokeStyle = paintingBrushColor
+    }
+  }
+
   // 获取签名图像数据
-  function getSignature() {
+  function getSignature(format: 'base64' | 'blob' = 'base64'): Promise<string | Blob | null | undefined> {
     if (canvasRef.current) {
-      // 获取签名的 base64 图像
-      return canvasRef.current.toDataURL()
+      // 返回base64格式
+      if (format === 'blob') {
+        return new Promise((resolve) => {
+          canvasRef.current?.toBlob(resolve)
+        })
+      }
+      // 返回base64格式
+      return new Promise((resolve) => {
+        resolve(canvasRef.current?.toDataURL())
+      })
     } else {
       throw new Error('手写签名异常')
     }
@@ -117,18 +160,17 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
 
   // 清空签名，重新绘制
   function clearSignature() {
-    if (context && canvasRef.current) {
-      context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
-    }
+    if (!context || !canvasRef.current) return
+    context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
   }
 
   // 改变画笔颜色
   function handleColorChange(value: string) {
+    if (!context) return
+    if (value === paintingBrushColor) return
     setPaintingBrushColor(value)
     // 更新画布设置
-    if (context) {
-      context.strokeStyle = value
-    }
+    context.strokeStyle = value
   }
 
   useImperativeHandle(ref, () => ({
@@ -137,19 +179,34 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
   }))
 
   useEffect(() => {
+    if (!canvasRef.current) return
     setCanvasAttr()
+  }, [])
+
+  // 窗口大小改变时，重新设置画布位置
+  useEffect(() => {
+    const handleResize = () => {
+      if (canvasRef.current) {
+        setCanvasRect(canvasRef.current.getBoundingClientRect())
+      }
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   return (
     <>
-      <div className="p-5 bg-white rounded-2xl flex flex-col items-center justify-center gap-4">
+      <div ref={containerRef} className="w-full h-full p-5 bg-white rounded-2xl flex flex-col items-center justify-center gap-4">
         {/* 颜色选择器 */}
         <div>
           <ColorPicker value={paintingBrushColor} onChange={handleColorChange} />
         </div>
 
         <canvas
-          className="border-dashed border-1 rounded-xl border-gray-700"
+          className="flex-1 w-full border-dashed border-1 rounded-xl border-gray-700"
           ref={canvasRef}
           onMouseDown={onStartDraw}
           onMouseMove={onDrawing}
@@ -158,11 +215,14 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
         ></canvas>
 
         <div className="flex justify-center gap-5">
-          <button className="text-background" onClick={getSignature}>
+          <button className="text-background" onClick={() => getSignature()}>
             保存签名
           </button>
-          <button className="text-background" onClick={clearSignature}>
+          <button className="text-background" onClick={() => clearSignature()}>
             清空签名
+          </button>
+          <button className="text-background" onClick={() => undo()}>
+            撤销
           </button>
         </div>
       </div>
@@ -170,4 +230,4 @@ function HandWrittenSignature(props: IProps, ref: Ref<ISignatureRef>) {
   )
 }
 
-export default forwardRef(HandWrittenSignature)
+export default memo(forwardRef(HandWrittenSignature))
