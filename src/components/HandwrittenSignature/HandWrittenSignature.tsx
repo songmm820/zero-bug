@@ -188,23 +188,10 @@ function HandWrittenSignature(_props: ISignatureProps, ref: Ref<ISignatureRef>) 
   }))
 
   useEffect(() => {
-    if (!canvasRef.current) return
+    // 如果canva为空或者上下文存在，则不重新设置canvas属性
+    if (!canvasRef.current || context) return
     setCanvasAttr()
-  }, [])
-
-  // 窗口大小改变时，重新设置画布位置
-  useEffect(() => {
-    const handleResize = () => {
-      if (canvasRef.current) {
-        setCanvasRect(canvasRef.current.getBoundingClientRect())
-      }
-    }
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+  }, [context])
 
   return (
     <>
