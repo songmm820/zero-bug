@@ -4,7 +4,7 @@
  */
 
 import { forwardRef, memo, MouseEvent, Ref, useEffect, useImperativeHandle, useRef, useState } from 'react'
-import SignatureSettingTools from '@/components/HandwrittenSignature/SignatureSettingTools.tsx'
+import SignatureSettingTools from '@/components/HandWrittenSignature/SignatureSettingTools.tsx'
 
 export interface ISignatureProps {
   /**
@@ -57,12 +57,16 @@ function HandWrittenSignature(_props: ISignatureProps, ref: Ref<ISignatureRef>) 
     // 画布尺寸取canvas元素尺寸
     canvas.width = canvas.clientWidth
     canvas.height = canvas.clientHeight
-    // 设置绘制样式
-    ctx.lineWidth = 1
+    // 设置线宽
+    ctx.lineWidth = 4
+    // 设置端点形状 butt | round | square
     ctx.lineCap = 'round'
+    // 设置线条连接方式 round | bevel | miter
     ctx.lineJoin = 'round'
     // 设置画笔颜色
     ctx.strokeStyle = paintingBrushColor
+    // 设置全局透明度
+    ctx.globalAlpha = 1
     setContext(ctx)
     // 缓存画布位置
     setCanvasRect(canvas.getBoundingClientRect())
@@ -204,8 +208,8 @@ function HandWrittenSignature(_props: ISignatureProps, ref: Ref<ISignatureRef>) 
 
   return (
     <>
-      <div ref={containerRef} className="w-full h-full p-5 rounded-2xl flex flex-col items-center justify-center gap-4">
-        <canvas className="flex-1 w-full rounded-xl" ref={canvasRef} onMouseDown={onStartDraw} onMouseMove={onDrawing} onMouseUp={onStopDraw} onMouseLeave={onStopLeave} />
+      <div ref={containerRef} className="w-full h-full p-5 flex flex-col items-center justify-center gap-4">
+        <canvas className="bg-white flex-1 w-full" ref={canvasRef} onMouseDown={onStartDraw} onMouseMove={onDrawing} onMouseUp={onStopDraw} onMouseLeave={onStopLeave} />
 
         <SignatureSettingTools color={paintingBrushColor} onChangeColor={handleColorChange} />
       </div>

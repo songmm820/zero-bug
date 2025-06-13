@@ -2,11 +2,11 @@
  * Views：Main
  * @author songmm
  */
-import HandWrittenSignature from '@/components/HandwrittenSignature/HandWrittenSignature.tsx'
+import HandWrittenSignature from '@/components/HandWrittenSignature/HandWrittenSignature.tsx'
 
 function HomeMain() {
   return (
-    <main className="flex-1 p-4 flex flex-col items-center justify-center">
+    <main className="bg-[#f5f5f5] flex-1 p-4 flex flex-col items-center justify-center">
       <HandWrittenSignature />
     </main>
   )

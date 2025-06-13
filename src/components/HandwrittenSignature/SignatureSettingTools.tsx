@@ -4,7 +4,7 @@
  */
 import { motion } from 'motion/react'
 import ColorPicker from '@/components/ColorPicker/ColorPicker.tsx'
-import { RecommendedColors } from '@/components/HandwrittenSignature/setting.ts'
+import { RecommendedColors } from '@/components/HandWrittenSignature/setting.ts'
 
 interface ISignatureSettingToolsProps {
   /**
@@ -43,9 +43,11 @@ function SignatureSettingTools(props: ISignatureSettingToolsProps) {
   }
 
   return (
-    <div className="flex items-center justify-between gap-4 text-background">
-      <RecommendedColor />
-      <ColorPicker value={paintingBrushColor} onChange={handleChangeColor} />
+    <div className="bg-white w-full p-4 flex items-center justify-between gap-4 text-background">
+      <div className="flex items-center gap-4">
+        <RecommendedColor />
+        <ColorPicker value={paintingBrushColor} onChange={handleChangeColor} />
+      </div>
     </div>
   )
 }

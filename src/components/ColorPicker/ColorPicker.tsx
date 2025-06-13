@@ -2,7 +2,7 @@
  * Component：颜色选择组件
  * @author songmm
  */
-import { ChangeEvent, CSSProperties, useRef, useState } from 'react'
+import { ChangeEvent, CSSProperties, useEffect, useRef, useState } from 'react'
 
 export interface IColorPickerProps {
   /**
@@ -36,6 +36,10 @@ function ColorPicker(props: IColorPickerProps) {
     setColor(event.target.value)
     props.onChange?.(event.target.value)
   }
+
+  useEffect(() => {
+    setColor(value)
+  }, [props.value])
 
   return (
     <div className="cursor-pointer w-6 h-6 rounded-full flex flex-col items-center justify-center" style={styleAttributes} onClick={onSelectColor}>
